@@ -26,6 +26,7 @@ Util.factorial = function(n) {
     return n * Util.factorial(n - 1);
 };
 
+
 /**
  * Calcule la disposition ordonnée de r éléments dans un ensemble de n elements.
  * Formule: Util.arrangement(n, r) = n! / (n - r)!
@@ -35,7 +36,22 @@ Util.factorial = function(n) {
  */
 Util.arrangement = function(n, r) {
 
+    if (n < 0) {
+        throw 'Unable to compute arrangement for n < 0'
+    }
+
+    if (r < 0) {
+        throw 'Unable to compute arrangement for r < 0'
+    }
+
+    if ((n-r) < 0) {
+        throw 'Unable to compute arrangement for n-r < 0'
+    }
+
+
+    return Util.factorial(n)/Util.factorial(n-r);
 };
+
 
 /**
  * Calcule la disposition non ordonnée de r éléments dans un ensemble de n elements.
@@ -45,6 +61,21 @@ Util.arrangement = function(n, r) {
  * @returns {number}
  */
 Util.combination = function(n, r) {
+
+    if (n < 0) {
+        throw 'Unable to compute combination for n < 0'
+    }
+
+    if (r < 0) {
+        throw 'Unable to compute combination for r < 0'
+    }
+
+    if ((n-r) < 0) {
+        throw 'Unable to compute combination for n-r < 0'
+    }
+
+
+    return Util.factorial(n)/(Util.factorial(n) * Util.factorial(n-r));
 
 };
 
@@ -57,6 +88,29 @@ Util.combination = function(n, r) {
  * @returns {boolean}
  */
 Util.isPrime = function(n) {
+
+    if (n < 2) {
+        throw 'Unable to compute isPrime for n < 2'
+    }
+
+
+    var racine = Math.floor(Math.sqrt(n));
+
+    j=1;
+
+    do {
+        j++;
+    } while(j <= racine && n%j != 0);
+
+    if(j > racine) {
+
+        return true;
+
+    }
+    else{
+
+        return false;
+    }
 
 };
 
@@ -71,6 +125,21 @@ Util.isPrime = function(n) {
  * @returns {number}
  */
 Util.sumPrime = function(n) {
+
+    if (n < 2) {
+        throw 'Unable to compute sumPrime for n < 2'
+    }
+
+    var sum = 0;
+
+    for(i=2;i<=n;i++){
+        if(Util.isPrime(i)==true)
+            sum += i;
+        else
+            ;
+    }
+
+    return sum;
 
 };
 
@@ -87,6 +156,26 @@ Util.sumPrime = function(n) {
  * @returns {array}
  */
 Util.fizzBuzz = function(n) {
+
+	var tab = [];
+	var i;
+
+	for(i=0;i<n;i++){
+
+		if((i+1)%3==0 && (i+1)%5==0)
+	   		tab[i]="FizzBuzz";
+
+		else
+			if((i+1)%3==0)
+	   			tab[i]="Fizz";
+			else
+				if((i+1)%5==0)
+	   				tab[i]="Buzz";
+				else
+					tab[i]=i+1;
+	}
+
+	return tab;
 
 };
 
