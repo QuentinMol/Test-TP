@@ -179,23 +179,42 @@ describe("FizzBuzz", function(){
 		for(i=0;i<15;i++){
 
 			if((i+1)%5==0 && (i+1)%3==0){
-				it("should returns 'FizzBuzz' when n ="+(i+1), function(){
+				var index = i+1;
+				it("should returns 'FizzBuzz' when n = "+index, function(){
 					var result = Util.fizzBuzz(15);
-					expect(result[i]).toEqual('FizzBuzz');
+					expect(result[i]).toEqual(tab[i]);
 				});				
 			}
 			else{
 				if((i+1)%3==0){
-					it("should returns 'Fizz' when n = 15", function(){
+					var index = i+1;
+					it("should returns 'Fizz' when n = "+index, function(){
 						var result = Util.fizzBuzz(15);
-						expect(result[i]).toEqual('FizzBuzz');
+						expect(result[i]).toEqual(tab[i]);
 					});	
+				}
+				else{
+
+					if((i+1)%5==0){
+						var index = i+1;
+						it("should returns 'Buzz' when n = "+index, function(){
+							var result = Util.fizzBuzz(15);
+							expect(result[i]).toEqual(tab[i]);
+						});	
+					}
+					else{
+						var index = i+1;
+						it("should returns "+index+" when n = "+index, function(){
+							var result = Util.fizzBuzz(15);
+							expect(result[i]).toEqual(tab[i]);
+						});		
+					}
+
 				}
 
 
 			}
 		    
-
 		}
 
 
