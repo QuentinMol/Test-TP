@@ -1,5 +1,5 @@
 //Quentin Molinié - FIPA 3
-//Fichier Util.js
+//Util - Complétion
 //30/01/2018
 
 Util = {};
