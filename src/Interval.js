@@ -33,6 +33,26 @@ Interval.prototype.includes = function (interval) {
  */
 Interval.prototype.union = function (interval) {
 
+	if(this.start <=interval.start && this.end >= interval.end)
+		return new Interval(this.start,this.end);
+
+	if(this.start <= interval.start){
+
+		if(this.end < interval.start){
+			throw 'Both intervals cannot be union together'
+		}
+		else{
+			return new Interval(this.start,interval.end);
+		}
+	}
+	else{
+		if(interval.end < this.start){
+			throw 'Both intervals cannot be union together'
+		}
+		else{
+			return new Interval(interval.start,this.end);
+		}
+	}
 };
 
 /**
@@ -41,6 +61,30 @@ Interval.prototype.union = function (interval) {
  * @returns {Interval|null}
  */
 Interval.prototype.intersection = function (interval) {
+
+	if(this.start <interval.start && this.end > interval.end)
+		return new Interval(this.end,interval.start);
+
+	if(this.start==interval.start && this.end==interval.end)
+		return new Interval(this.start,this.end);
+
+	if(this.start < interval.start){
+
+		if(this.end >= interval.start){
+			return new Interval(interval.start,this.end);
+		}
+		else{
+			return null;
+		}
+	}
+	else{
+		if(interval.end > this.start){
+			return new Interval(this.start,interval.end);
+		}
+		else{
+			return null;
+		}
+	}
 
 };
 

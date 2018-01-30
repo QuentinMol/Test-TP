@@ -1,3 +1,7 @@
+//Quentin Molinié - FIPA 3
+//Fichier Util.js
+//30/01/2018
+
 Util = {};
 
 /**
@@ -48,6 +52,10 @@ Util.arrangement = function(n, r) {
         throw 'Unable to compute arrangement for n-r < 0'
     }
 
+    if (!(typeof n === "number") || Math.floor(n) !== n) {
+        throw 'Unable to compute factorial of non integer values'
+    }
+
 
     return Util.factorial(n)/Util.factorial(n-r);
 };
@@ -74,8 +82,11 @@ Util.combination = function(n, r) {
         throw 'Unable to compute combination for n-r < 0'
     }
 
+    if (!(typeof n === "number") || Math.floor(n) !== n) {
+        throw 'Unable to compute factorial of non integer values'
+    }
 
-    return Util.factorial(n)/(Util.factorial(n) * Util.factorial(n-r));
+    return (Util.factorial(n))/(Util.factorial(r) * Util.factorial(n-r));
 
 };
 
@@ -93,6 +104,9 @@ Util.isPrime = function(n) {
         throw 'Unable to compute isPrime for n < 2'
     }
 
+    if (!(typeof n === "number") || Math.floor(n) !== n) {
+        throw 'Unable to compute factorial of non integer values'
+    }
 
     var racine = Math.floor(Math.sqrt(n));
 
@@ -130,6 +144,10 @@ Util.sumPrime = function(n) {
         throw 'Unable to compute sumPrime for n < 2'
     }
 
+    if (!(typeof n === "number") || Math.floor(n) !== n) {
+        throw 'Unable to compute factorial of non integer values'
+    }
+
     var sum = 0;
 
     for(i=2;i<=n;i++){
@@ -160,6 +178,10 @@ Util.fizzBuzz = function(n) {
 	var tab = [];
 	var i;
 
+    if (!(typeof n === "number") || Math.floor(n) !== n) {
+        throw 'Unable to compute factorial of non integer values'
+    }
+
 	for(i=0;i<n;i++){
 
 		if((i+1)%3==0 && (i+1)%5==0)
@@ -189,5 +211,36 @@ Util.fizzBuzz = function(n) {
  * @returns {string}
  */
 Util.cipher = function (phrase) {
+
+    var cipher = "";
+
+    for(var i=0;i<phrase.length;i++){
+
+        if((phrase.charCodeAt(i)==32)||((phrase.charCodeAt(i)>=65)&&(phrase.charCodeAt(i)<=90))||((phrase.charCodeAt(i)>=97)&&(phrase.charCodeAt(i)<=122))){
+
+            if(phrase.charCodeAt(i)==32){
+                cipher += " ";
+            }
+            else{
+                if(phrase.charCodeAt(i)==90){
+                    cipher += String.fromCharCode(65);
+                }
+                else{
+                    if(phrase.charCodeAt(i)==122){
+                        cipher += String.fromCharCode(97);
+                    }
+                    else{
+                        cipher += String.fromCharCode(phrase.charCodeAt(i)+1);
+                    }
+                }
+            }
+        }
+        else{
+            throw 'Unable to compute cipher with letters'
+        }
+
+    }
+
+    return cipher;
 
 };
