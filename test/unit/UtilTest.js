@@ -1,5 +1,5 @@
 //Quentin Molinié - FIPA 3
-//Fichier UtilTest.js
+//UtilTest - Complétion
 //30/01/2018
 
 
